@@ -1,0 +1,31 @@
+{
+  "name": "metricimpconverter",
+  "version": "0.1.0",
+  "description": "Convert between metric and imperial units.",
+  "main": "server.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slipskid/metricimpconverter.git"
+  },
+  "author": "Jonathan Howard",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/slipskid/metricimpconverter/issues"
+  },
+  "homepage": "https://github.com/slipskid/metricimpconverter#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mocha": "^6.2.2"
+  }
+}
