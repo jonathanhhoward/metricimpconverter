@@ -1,5 +1,7 @@
 'use strict'
 
+process.env.NODE_ENV = 'test'
+
 const express = require('express')
 const bodyParser = require('body-parser')
 const expect = require('chai').expect
