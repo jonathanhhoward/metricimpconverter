@@ -9,7 +9,7 @@
 function ConvertHandler () {
 
   this.getNum = function (input) {
-    let result
+    let result = Number.parseInt(input)
 
     return result
   }
