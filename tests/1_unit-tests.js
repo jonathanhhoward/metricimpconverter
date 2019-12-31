@@ -35,8 +35,9 @@ suite('Unit Tests', function () {
     })
 
     test('Fractional Input w/ Decimal', function (done) {
-
-      //done();
+      const input = '1.5/2L'
+      assert.equal(convertHandler.getNum(input), 0.75)
+      done();
     })
 
     test('Invalid Input (double fraction)', function (done) {

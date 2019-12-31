@@ -12,7 +12,9 @@ function ConvertHandler () {
     let result
     if (input.includes('/')) {
       const nums = input.split('/')
-      result = nums.reduce((acc, cur) => acc / Number.parseInt(cur))
+      result = nums.reduce((acc, cur) => {
+        return Number.parseFloat(acc) / Number.parseFloat(cur)
+      })
     } else {
       result = Number.parseFloat(input)
     }
