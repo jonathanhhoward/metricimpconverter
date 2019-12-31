@@ -12,7 +12,7 @@ function ConvertHandler () {
     let result
     if (input.includes('/')) {
       const nums = input.split('/').map(num => Number.parseFloat(num))
-      if (nums.length > 2) throw 'invalid input'
+      if (nums.length > 2) throw 'invalid number'
       result = nums[0] / nums[1]
     } else if (/^[a-z]/i.test(input)) {
       result = 1

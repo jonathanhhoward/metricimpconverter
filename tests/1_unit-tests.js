@@ -42,7 +42,7 @@ suite('Unit Tests', function () {
 
     test('Invalid Input (double fraction)', function (done) {
       const input = '1/2/2L'
-      assert.throws(() => convertHandler.getNum(input), 'invalid input')
+      assert.throws(() => convertHandler.getNum(input), 'invalid number')
       done();
     })
 
