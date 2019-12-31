@@ -9,7 +9,7 @@
 function ConvertHandler () {
 
   this.getNum = function (input) {
-    let result = Number.parseInt(input)
+    let result = Number.parseFloat(input)
 
     return result
   }
