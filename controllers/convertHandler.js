@@ -11,10 +11,9 @@ function ConvertHandler () {
   this.getNum = function (input) {
     let result
     if (input.includes('/')) {
-      const nums = input.split('/')
-      result = nums.reduce((acc, cur) => {
-        return Number.parseFloat(acc) / Number.parseFloat(cur)
-      })
+      const nums = input.split('/').map(num => Number.parseFloat(num))
+      if (nums.length > 2) throw 'invalid input'
+      result = nums[0] / nums[1]
     } else {
       result = Number.parseFloat(input)
     }
