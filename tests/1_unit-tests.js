@@ -29,8 +29,9 @@ suite('Unit Tests', function () {
     })
 
     test('Fractional Input', function (done) {
-
-      //done();
+      const input = '1/2L'
+      assert.equal(convertHandler.getNum(input), 0.5)
+      done();
     })
 
     test('Fractional Input w/ Decimal', function (done) {

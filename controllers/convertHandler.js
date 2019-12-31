@@ -9,8 +9,13 @@
 function ConvertHandler () {
 
   this.getNum = function (input) {
-    let result = Number.parseFloat(input)
-
+    let result
+    if (input.includes('/')) {
+      const nums = input.split('/')
+      result = nums.reduce((acc, cur) => acc / Number.parseInt(cur))
+    } else {
+      result = Number.parseFloat(input)
+    }
     return result
   }
 
