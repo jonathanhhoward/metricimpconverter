@@ -62,13 +62,14 @@ suite('Unit Tests', function () {
         'GAL', 'L', 'MI', 'KM', 'LBS', 'KG'
       ]
       input.forEach(function (ele) {
-        assert.equal(convertHandler.getUnit(ele), ele.toLowerCase())
+        const input = '5' + ele
+        assert.equal(convertHandler.getUnit(input), ele.toLowerCase())
       })
       done()
     })
 
     test('Unknown Unit Input', function (done) {
-      const input = 'ft'
+      const input = '5ft'
       assert.throws(() => convertHandler.getUnit(input), 'invalid unit')
       done();
     })
@@ -134,4 +135,6 @@ suite('Unit Tests', function () {
 
   })
 
+  // todo: unit test for too much input
+  // todo: unit test for no unit input
 })
