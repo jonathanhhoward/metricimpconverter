@@ -25,31 +25,31 @@ suite('Unit Tests', function () {
     test('Decimal Input', function (done) {
       const input = '1.5L'
       assert.equal(convertHandler.getNum(input), 1.5)
-      done();
+      done()
     })
 
     test('Fractional Input', function (done) {
       const input = '1/2L'
       assert.equal(convertHandler.getNum(input), 0.5)
-      done();
+      done()
     })
 
     test('Fractional Input w/ Decimal', function (done) {
       const input = '1.5/2L'
       assert.equal(convertHandler.getNum(input), 0.75)
-      done();
+      done()
     })
 
     test('Invalid Input (double fraction)', function (done) {
       const input = '1/2/2L'
       assert.throws(() => convertHandler.getNum(input), 'invalid number')
-      done();
+      done()
     })
 
     test('No Numerical Input', function (done) {
       const input = 'L'
       assert.equal(convertHandler.getNum(input), 1)
-      done();
+      done()
     })
 
   })
@@ -71,7 +71,7 @@ suite('Unit Tests', function () {
     test('Unknown Unit Input', function (done) {
       const input = '5ft'
       assert.throws(() => convertHandler.getUnit(input), 'invalid unit')
-      done();
+      done()
     })
 
   })
@@ -135,6 +135,16 @@ suite('Unit Tests', function () {
 
   })
 
-  // todo: unit test for too much input
-  // todo: unit test for no unit input
+  suite('More Function convertHandler.getNum(input)', function () {
+    test('Extra Input', function () {
+      // todo: unit test for extra input
+    })
+  })
+
+  suite('More Function convertHandler.getUnit(input)', function () {
+    test('No Unit Input', function () {
+      // todo: unit test for no unit input
+    })
+  })
+
 })
