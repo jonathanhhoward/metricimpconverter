@@ -68,8 +68,9 @@ suite('Unit Tests', function () {
     })
 
     test('Unknown Unit Input', function (done) {
-
-      //done();
+      const input = 'ft'
+      assert.throws(() => convertHandler.getUnit(input), 'invalid unit')
+      done();
     })
 
   })
