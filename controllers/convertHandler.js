@@ -29,7 +29,7 @@ function ConvertHandler () {
       'GAL', 'L', 'MI', 'KM', 'LBS', 'KG'
     ]
     if (!validUnits.includes(result)) throw 'invalid unit'
-    return result.toLowerCase()
+    return result
   }
 
   this.getReturnUnit = function (initUnit) {
