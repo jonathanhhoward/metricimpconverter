@@ -62,7 +62,7 @@ suite('Unit Tests', function () {
         'GAL', 'L', 'MI', 'KM', 'LBS', 'KG'
       ]
       input.forEach(function (ele) {
-        //assert
+        assert.equal(convertHandler.getUnit(ele), ele.toLowerCase())
       })
       done()
     })

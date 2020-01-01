@@ -23,9 +23,13 @@ function ConvertHandler () {
   }
 
   this.getUnit = function (input) {
-    let result
-
-    return result
+    let result = input.match(/[a-z]+$/i)[0].toLowerCase()
+    // const validUnits = [
+    //   'gal', 'l', 'mi', 'km', 'lbs', 'kg',
+    //   'GAL', 'L', 'MI', 'KM', 'LBS', 'KG'
+    // ]
+    // if (!validUnits.includes(result)) throw 'invalid unit'
+    return result.toLowerCase()
   }
 
   this.getReturnUnit = function (initUnit) {
