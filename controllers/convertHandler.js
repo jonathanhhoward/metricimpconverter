@@ -30,9 +30,10 @@ function ConvertHandler () {
   }
 
   this.getReturnUnit = function (initUnit) {
-    let result
-
-    return result
+    const initUnits = ['gal', 'l', 'mi', 'km', 'lbs', 'kg']
+    const returnUnits = ['l', 'gal', 'km', 'mi', 'kg', 'lbs']
+    const i = initUnits.indexOf(initUnit)
+    return returnUnits[i]
   }
 
   this.spellOutUnit = function (unit) {
