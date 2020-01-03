@@ -10,16 +10,17 @@ function ConvertHandler () {
 
   this.getNum = function (input) {
     let result
-    const inputAfterUnit = /([a-z](?=[^a-z ]))|([a-z] +(?=[^ ]))/i
-    if (inputAfterUnit.test(input)) throw 'invalid number'
     if (input.includes('/')) {
       const nums = input.split('/').map(num => Number.parseFloat(num))
-      if (nums.length > 2) throw 'invalid number'
+      if (nums.length > 2 || Number.isNaN(nums[0]) || Number.isNaN(nums[1]))
+        throw 'invalid number'
       result = nums[0] / nums[1]
-    } else if (/^[a-z]/i.test(input)) {
+    } else if (/^[a-z]/i.test(input.trim())) {
       result = 1
     } else {
-      result = Number.parseFloat(input)
+      const parsed = Number.parseFloat(input)
+      if (Number.isNaN(parsed)) throw 'invalid number'
+      result = parsed
     }
     return result
   }
@@ -52,7 +53,7 @@ function ConvertHandler () {
     const lbsToKg = 0.453592
     const miToKm = 1.60934
     let result
-    switch(initUnit) {
+    switch (initUnit) {
       case 'gal':
         result = initNum * galToL
         break
