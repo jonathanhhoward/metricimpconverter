@@ -38,8 +38,12 @@ function ConvertHandler () {
 
   this.spellOutUnit = function (unit) {
     let result
-
-    return result
+    const abbr = ['gal', 'l', 'mi', 'km', 'lbs', 'kg']
+    const spell = [
+      'gallons', 'liters', 'miles', 'kilometers', 'pounds', 'kilograms'
+    ]
+    const i = abbr.indexOf(unit)
+    return spell[i]
   }
 
   this.convert = function (initNum, initUnit) {
