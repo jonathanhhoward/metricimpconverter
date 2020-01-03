@@ -166,7 +166,7 @@ suite('Unit Tests', function () {
   suite('More Function convertHandler.getUnit(input)', function () {
     test('No Unit Input', function (done) {
       const input = '5'
-      assert.throws(() => convertHandler.getUnit(input), 'missing unit')
+      assert.throws(() => convertHandler.getUnit(input), 'no unit')
       done()
     })
   })
