@@ -10,6 +10,8 @@ function ConvertHandler () {
 
   this.getNum = function (input) {
     let result
+    const inputAfterUnit = /([a-z](?=[^a-z ]))|([a-z] +(?=[^ ]))/i
+    if (inputAfterUnit.test(input)) throw 'invalid number'
     if (input.includes('/')) {
       const nums = input.split('/').map(num => Number.parseFloat(num))
       if (nums.length > 2) throw 'invalid number'
