@@ -156,15 +156,19 @@ suite('Unit Tests', function () {
 
   })
 
-  suite('More Function convertHandler.getNum(input)', function () {
-    test('Extra Input', function () {
-      // todo: unit test for extra input
-    })
-  })
+  // suite('More Function convertHandler.getNum(input)', function () {
+  //   test('Extra Input', function (done) {
+  //     // todo: unit test for extra input
+  //     done()
+  //   })
+  // })
 
   suite('More Function convertHandler.getUnit(input)', function () {
-    test('No Unit Input', function () {
+    test('No Unit Input', function (done) {
       // todo: unit test for no unit input
+      const input = '5'
+      assert.throws(() => convertHandler.getUnit(input), 'missing unit')
+      done()
     })
   })
 
