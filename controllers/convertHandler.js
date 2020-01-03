@@ -32,18 +32,15 @@ function ConvertHandler () {
   this.getReturnUnit = function (initUnit) {
     const initUnits = ['gal', 'l', 'mi', 'km', 'lbs', 'kg']
     const returnUnits = ['l', 'gal', 'km', 'mi', 'kg', 'lbs']
-    const i = initUnits.indexOf(initUnit)
-    return returnUnits[i]
+    return returnUnits[initUnits.indexOf(initUnit)]
   }
 
   this.spellOutUnit = function (unit) {
-    let result
     const abbr = ['gal', 'l', 'mi', 'km', 'lbs', 'kg']
     const spell = [
       'gallons', 'liters', 'miles', 'kilometers', 'pounds', 'kilograms'
     ]
-    const i = abbr.indexOf(unit)
-    return spell[i]
+    return spell[abbr.indexOf(unit)]
   }
 
   this.convert = function (initNum, initUnit) {
