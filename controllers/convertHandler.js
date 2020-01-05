@@ -9,20 +9,14 @@
 function ConvertHandler () {
 
   this.getNum = function (input) {
-    let result
-    if (input.includes('/')) {
-      const nums = input.split('/').map(num => Number.parseFloat(num))
-      if (nums.length > 2 || Number.isNaN(nums[0]) || Number.isNaN(nums[1]))
-        throw 'invalid number'
-      result = nums[0] / nums[1]
-    } else if (/^[a-z]/i.test(input.trim())) {
-      result = 1
-    } else {
-      const parsed = Number.parseFloat(input)
-      if (Number.isNaN(parsed)) throw 'invalid number'
-      result = parsed
-    }
-    return result
+    const unitIndex = input.search(/[a-z]+ *$/i)
+    if (unitIndex === -1) throw 'no unit'
+    if (/^ *[a-z]/i.test(input)) return 1
+    const inputNumber = input.slice(0, unitIndex)
+    const number = /^ *(\d+|\d+\.\d*|\d*\.\d+)( *\/ *(\d+|\d+\.\d*|\d*\.\d+))? *$/
+    const match = inputNumber.match(number)
+    if (!match) throw 'invalid number'
+    return Number.parseFloat(match[1]) / (Number.parseFloat(match[3]) || 1)
   }
 
   this.getUnit = function (input) {
