@@ -9,10 +9,8 @@
 function ConvertHandler () {
 
   this.getNum = function (input) {
-    const unitIndex = input.search(/[a-z]+ *$/i)
-    if (unitIndex === -1) throw 'no unit'
     if (/^ *[a-z]/i.test(input)) return 1
-    const inputNumber = input.slice(0, unitIndex)
+    const inputNumber = input.slice(0, unitIndex(input))
     const number = /^ *(\d+|\d+\.\d*|\d*\.\d+)( *\/ *(\d+|\d+\.\d*|\d*\.\d+))? *$/
     const match = inputNumber.match(number)
     if (!match) throw 'invalid number'
@@ -79,5 +77,12 @@ function ConvertHandler () {
   }
 
 }
+
+function unitIndex(input) {
+  const result = input.search(/[a-z]/i)
+  if (result === -1) throw 'no unit'
+  return result
+}
+
 
 module.exports = ConvertHandler
