@@ -9,7 +9,7 @@
 function ConvertHandler () {
 
   this.getNum = function (input) {
-    if (/^ *[a-z]/i.test(input)) return 1
+    if (startsWithUnit(input)) return 1
     const inputNumber = input.slice(0, unitIndex(input))
     const number = /^ *(\d+|\d+\.\d*|\d*\.\d+)( *\/ *(\d+|\d+\.\d*|\d*\.\d+))? *$/
     const match = inputNumber.match(number)
@@ -76,6 +76,10 @@ function ConvertHandler () {
     return result
   }
 
+}
+
+function startsWithUnit (input) {
+  return /^ *[a-z]/i.test(input)
 }
 
 function unitIndex(input) {
