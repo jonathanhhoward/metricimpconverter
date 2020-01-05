@@ -10,11 +10,11 @@ function ConvertHandler () {
 
   this.getNum = function (input) {
     if (startsWithUnit(input)) return 1
-    const inputNumber = input.slice(0, unitIndex(input))
-    const number = /^ *(\d+|\d+\.\d*|\d*\.\d+)( *\/ *(\d+|\d+\.\d*|\d*\.\d+))? *$/
-    const match = inputNumber.match(number)
-    if (!match) throw 'invalid number'
-    return Number.parseFloat(match[1]) / (Number.parseFloat(match[3]) || 1)
+    const num = input.slice(0, unitIndex(input))
+    const validNum = /^ *(\d+|\d+\.\d*|\d*\.\d+)( *\/ *(\d+|\d+\.\d*|\d*\.\d+))? *$/
+    const matches = num.match(validNum)
+    if (!matches) throw 'invalid number'
+    return Number.parseFloat(matches[1]) / (Number.parseFloat(matches[3]) || 1)
   }
 
   this.getUnit = function (input) {
