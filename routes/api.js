@@ -25,7 +25,7 @@ module.exports = function (app) {
       const toString = convertHandler.getString(initNum, initUnit, returnNum,
         returnUnit)
 
-      //res.json
+      res.json({initNum, initUnit, returnNum, returnUnit, toString})
     })
 
 }
