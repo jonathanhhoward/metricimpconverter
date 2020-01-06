@@ -156,14 +156,6 @@ suite('Unit Tests', function () {
 
   })
 
-  suite('More Function convertHandler.getNum(input)', function () {
-    test('Extra Input', function (done) {
-      const input = '5gal6'
-      assert.throws(() => convertHandler.getNum(input), 'invalid number')
-      done()
-    })
-  })
-
   suite('More Function convertHandler.getUnit(input)', function () {
     test('No Unit Input', function (done) {
       const input = '5'
