@@ -69,9 +69,9 @@ function ConvertHandler () {
   }
 
   this.getString = function (initNum, initUnit, returnNum, returnUnit) {
-    let result
-
-    return result
+    const spellInit = this.spellOutUnit(initUnit)
+    const spellReturn = this.spellOutUnit(returnUnit)
+    return `${initNum} ${spellInit} converts to ${returnNum} ${spellReturn}`
   }
 
 }
