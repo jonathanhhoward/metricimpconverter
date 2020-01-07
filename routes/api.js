@@ -18,7 +18,7 @@ module.exports = function (app) {
   app.route('/api/convert')
     .get(function (req, res) {
       const input = req.query.input
-      const initNum = convertHandler.getNum(input)
+      const initNum = roundToFive(convertHandler.getNum(input))
       const initUnit = convertHandler.getUnit(input)
 
       if (!initNum && !initUnit)
@@ -28,7 +28,7 @@ module.exports = function (app) {
       if (!initUnit)
         return res.json({ error: 'invalid unit' })
 
-      const returnNum = convertHandler.convert(initNum, initUnit)
+      const returnNum = roundToFive(convertHandler.convert(initNum, initUnit))
       const returnUnit = convertHandler.getReturnUnit(initUnit)
       const string = convertHandler.getString(
         initNum, initUnit, returnNum, returnUnit
@@ -37,4 +37,8 @@ module.exports = function (app) {
       res.json({ initNum, initUnit, returnNum, returnUnit, string })
     })
 
+}
+
+function roundToFive (aNumber) {
+  return Math.round(aNumber * 1e5 + Number.EPSILON) / 1e5
 }
