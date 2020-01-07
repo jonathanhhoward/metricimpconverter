@@ -9,27 +9,35 @@
 function ConvertHandler () {
 
   this.getNum = function (input) {
-    if (/^[a-z]/i.test(input.trim())) return 1
-    const unitIndex = input.search(/[a-z]/i)
-    const num = unitIndex !== -1 ? input.slice(0, unitIndex) : input
-    const validNum = /^ *(\d+|\d+\.\d*|\d*\.\d+)( *\/ *(\d+|\d+\.\d*|\d*\.\d+))? *$/
-    const matches = num.match(validNum)
-    if (!matches) return 'invalid number'
-    return Number.parseFloat(matches[1]) / (Number.parseFloat(matches[3]) || 1)
+    const trim = input.trim()
+    const i = indexOfFirstAlpha(trim)
+
+    if (i === 0) return 1
+
+    const num = (i !== -1) ? trim.slice(0, i) : trim
+
+    const matches = num.match(
+      /^(\d+|\d+\.\d*|\d*\.\d+)( *\/ *(\d+|\d+\.\d*|\d*\.\d+))? *$/
+    )
+
+    return (matches)
+      ? Number.parseFloat(matches[1]) / (Number.parseFloat(matches[3]) || 1)
+      : null
   }
 
   this.getUnit = function (input) {
-    const unitIndex = input.search(/[a-z]/i)
-    if (unitIndex === -1) return 'invalid unit'
-    let result = input.slice(unitIndex).trim().toLowerCase()
     const validUnits = ['gal', 'l', 'mi', 'km', 'lbs', 'kg']
-    if (!validUnits.includes(result)) return 'invalid unit'
-    return result
+    const i = indexOfFirstAlpha(input)
+
+    let unit = (i !== -1) ? input.slice(i).trim().toLowerCase() : ''
+
+    return (validUnits.includes(unit)) ? unit : null
   }
 
   this.getReturnUnit = function (initUnit) {
     const initUnits = ['gal', 'l', 'mi', 'km', 'lbs', 'kg']
     const returnUnits = ['l', 'gal', 'km', 'mi', 'kg', 'lbs']
+
     return returnUnits[initUnits.indexOf(initUnit)]
   }
 
@@ -38,6 +46,7 @@ function ConvertHandler () {
     const spell = [
       'gallons', 'liters', 'miles', 'kilometers', 'pounds', 'kilograms'
     ]
+
     return spell[abbr.indexOf(unit)]
   }
 
@@ -45,38 +54,38 @@ function ConvertHandler () {
     const galToL = 3.78541
     const lbsToKg = 0.453592
     const miToKm = 1.60934
-    let result
+
     switch (initUnit) {
       case 'gal':
-        result = initNum * galToL
-        break
+        return initNum * galToL
       case 'l':
-        result = initNum / galToL
-        break
+        return initNum / galToL
       case 'mi':
-        result = initNum * miToKm
-        break
+        return initNum * miToKm
       case 'km':
-        result = initNum / miToKm
-        break
+        return initNum / miToKm
       case 'lbs':
-        result = initNum * lbsToKg
-        break
+        return initNum * lbsToKg
       case 'kg':
-        result = initNum / lbsToKg
-        break
+        return initNum / lbsToKg
       default:
-        return 'invalid unit'
+        return null
     }
-    return result
   }
 
   this.getString = function (initNum, initUnit, returnNum, returnUnit) {
-    const spellInit = this.spellOutUnit(initUnit)
-    const spellReturn = this.spellOutUnit(returnUnit)
-    return `${initNum} ${spellInit} converts to ${returnNum} ${spellReturn}`.toString()
+    const spellInitUnit = this.spellOutUnit(initUnit)
+    const spellReturnUnit = this.spellOutUnit(returnUnit)
+
+    return String(
+      `${initNum} ${spellInitUnit} converts to ${returnNum} ${spellReturnUnit}`
+    )
   }
 
+}
+
+function indexOfFirstAlpha (aString) {
+  return aString.search(/[a-z]/i)
 }
 
 module.exports = ConvertHandler

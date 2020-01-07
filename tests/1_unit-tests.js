@@ -42,7 +42,7 @@ suite('Unit Tests', function () {
 
     test('Invalid Input (double fraction)', function (done) {
       const input = '1/2/2L'
-      assert.equal(convertHandler.getNum(input), 'invalid number')
+      assert.isNull(convertHandler.getNum(input))
       done()
     })
 
@@ -69,8 +69,9 @@ suite('Unit Tests', function () {
     })
 
     test('Unknown Unit Input', function (done) {
-      const input = '5ft'
-      assert.equal(convertHandler.getUnit(input), 'invalid unit')
+      const input = ['5ft', '']
+      assert.isNull(convertHandler.getUnit(input[0]))
+      assert.isNull(convertHandler.getUnit(input[1]))
       done()
     })
 
@@ -109,48 +110,54 @@ suite('Unit Tests', function () {
     test('Gal to L', function (done) {
       const input = [5, 'gal']
       const expected = 18.9271
-      assert.approximately(convertHandler.convert(input[0], input[1]), expected,
-        0.1) //0.1 tolerance
+      assert.approximately(
+        convertHandler.convert(input[0], input[1]), expected, 0.1
+      )
       done()
     })
 
     test('L to Gal', function (done) {
       const input = [5, 'l']
       const expected = 1.32081
-      assert.approximately(convertHandler.convert(input[0], input[1]), expected,
-        0.1) //0.1 tolerance
+      assert.approximately(
+        convertHandler.convert(input[0], input[1]), expected, 0.1
+      )
       done()
     })
 
     test('Mi to Km', function (done) {
       const input = [5, 'mi']
       const expected = 8.04670
-      assert.approximately(convertHandler.convert(input[0], input[1]), expected,
-        0.1) //0.1 tolerance
+      assert.approximately(
+        convertHandler.convert(input[0], input[1]), expected, 0.1
+      )
       done()
     })
 
     test('Km to Mi', function (done) {
       const input = [5, 'km']
       const expected = 3.10686
-      assert.approximately(convertHandler.convert(input[0], input[1]), expected,
-        0.1) //0.1 tolerance
+      assert.approximately(
+        convertHandler.convert(input[0], input[1]), expected, 0.1
+      )
       done()
     })
 
     test('Lbs to Kg', function (done) {
       const input = [5, 'lbs']
       const expected = 2.26796
-      assert.approximately(convertHandler.convert(input[0], input[1]), expected,
-        0.1) //0.1 tolerance
+      assert.approximately(
+        convertHandler.convert(input[0], input[1]), expected, 0.1
+      )
       done()
     })
 
     test('Kg to Lbs', function (done) {
       const input = [5, 'kg']
       const expected = 11.0231
-      assert.approximately(convertHandler.convert(input[0], input[1]), expected,
-        0.1) //0.1 tolerance
+      assert.approximately(
+        convertHandler.convert(input[0], input[1]), expected, 0.1
+      )
       done()
     })
 
