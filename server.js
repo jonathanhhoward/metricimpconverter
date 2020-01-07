@@ -48,7 +48,7 @@ const server = app.listen(process.env.PORT || 3000, function () {
       try {
         runner.run()
       } catch (e) {
-        var error = e
+        const error = e
         console.log('Tests are not valid:')
         console.log(error)
       }
