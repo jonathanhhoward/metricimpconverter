@@ -42,7 +42,7 @@ suite('Unit Tests', function () {
 
     test('Invalid Input (double fraction)', function (done) {
       const input = '1/2/2L'
-      assert.throws(() => convertHandler.getNum(input), 'invalid number')
+      assert.equal(convertHandler.getNum(input), 'invalid number')
       done()
     })
 
@@ -70,7 +70,7 @@ suite('Unit Tests', function () {
 
     test('Unknown Unit Input', function (done) {
       const input = '5ft'
-      assert.throws(() => convertHandler.getUnit(input), 'invalid unit')
+      assert.equal(convertHandler.getUnit(input), 'invalid unit')
       done()
     })
 
@@ -154,14 +154,6 @@ suite('Unit Tests', function () {
       done()
     })
 
-  })
-
-  suite('More Function convertHandler.getUnit(input)', function () {
-    test('No Unit Input', function (done) {
-      const input = '5'
-      assert.throws(() => convertHandler.getUnit(input), 'no unit')
-      done()
-    })
   })
 
 })

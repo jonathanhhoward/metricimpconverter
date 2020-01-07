@@ -9,18 +9,21 @@
 function ConvertHandler () {
 
   this.getNum = function (input) {
-    if (startsWithUnit(input)) return 1
-    const num = input.slice(0, unitIndex(input))
+    if (/^[a-z]/i.test(input.trim())) return 1
+    const unitIndex = input.search(/[a-z]/i)
+    const num = unitIndex !== -1 ? input.slice(0, unitIndex) : input
     const validNum = /^ *(\d+|\d+\.\d*|\d*\.\d+)( *\/ *(\d+|\d+\.\d*|\d*\.\d+))? *$/
     const matches = num.match(validNum)
-    if (!matches) throw 'invalid number'
+    if (!matches) return 'invalid number'
     return Number.parseFloat(matches[1]) / (Number.parseFloat(matches[3]) || 1)
   }
 
   this.getUnit = function (input) {
-    let result = input.slice(unitIndex(input)).trim().toLowerCase()
+    const unitIndex = input.search(/[a-z]/i)
+    if (unitIndex === -1) return 'invalid unit'
+    let result = input.slice(unitIndex).trim().toLowerCase()
     const validUnits = ['gal', 'l', 'mi', 'km', 'lbs', 'kg']
-    if (!validUnits.includes(result)) throw 'invalid unit'
+    if (!validUnits.includes(result)) return 'invalid unit'
     return result
   }
 
@@ -63,7 +66,7 @@ function ConvertHandler () {
         result = initNum / lbsToKg
         break
       default:
-        throw 'invalid unit'
+        return 'invalid unit'
     }
     return result
   }
@@ -71,20 +74,9 @@ function ConvertHandler () {
   this.getString = function (initNum, initUnit, returnNum, returnUnit) {
     const spellInit = this.spellOutUnit(initUnit)
     const spellReturn = this.spellOutUnit(returnUnit)
-    return `${initNum} ${spellInit} converts to ${returnNum} ${spellReturn}`
+    return `${initNum} ${spellInit} converts to ${returnNum} ${spellReturn}`.toString()
   }
 
 }
-
-function startsWithUnit (input) {
-  return /^ *[a-z]/i.test(input)
-}
-
-function unitIndex(input) {
-  const result = input.search(/[a-z]/i)
-  if (result === -1) throw 'no unit'
-  return result
-}
-
 
 module.exports = ConvertHandler
