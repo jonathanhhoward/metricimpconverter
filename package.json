@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/slipskid/metricimpconverter.git"
+    "url": "git+https://github.com/jonathanhhoward/metricimpconverter.git"
   },
   "author": "Jonathan Howard",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/slipskid/metricimpconverter/issues"
+    "url": "https://github.com/jonathanhhoward/metricimpconverter/issues"
   },
-  "homepage": "https://github.com/slipskid/metricimpconverter#readme",
+  "homepage": "https://jhhoward-metricimpconverter.glitch.me",
   "dependencies": {
     "body-parser": "^1.19.0",
     "chai": "^4.2.0",
